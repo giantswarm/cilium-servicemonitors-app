@@ -1,0 +1,5 @@
+cluster:
+  kubernetes:
+    clusterDomain: cluster.local
+
+team: kaas
