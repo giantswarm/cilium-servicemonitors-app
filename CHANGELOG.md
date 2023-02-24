@@ -10,3 +10,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Added
 
 - Create ServiceMonitors to scrape Cilium
+
+
+[Unreleased]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.0.0...HEAD
+
