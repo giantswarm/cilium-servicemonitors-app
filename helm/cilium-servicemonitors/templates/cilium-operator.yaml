@@ -3,6 +3,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     application.giantswarm.io/team: {{ .Values.team }}
+    {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
   name: cilium-agent
   namespace: kube-system
 spec:

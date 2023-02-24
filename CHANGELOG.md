@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Add labels to servicemonitors
+
 ## [0.0.1] - 2023-02-24
 
 ### Added

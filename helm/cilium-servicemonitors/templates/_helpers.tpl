@@ -35,7 +35,6 @@ Common labels
 */}}
 {{- define "cilium-servicemonitors.labels" -}}
 helm.sh/chart: {{ include "cilium-servicemonitors.chart" . }}
-{{ include "cilium-servicemonitors.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -43,5 +42,4 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- if .Values.releaseLabel }}
 release: {{ .Release.Name }}
 {{- end }}
-application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 {{- end }}
