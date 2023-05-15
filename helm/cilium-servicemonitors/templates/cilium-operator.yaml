@@ -9,10 +9,18 @@ metadata:
   namespace: kube-system
 spec:
   endpoints:
-    - honorLabels: true
-      interval: 10s
-      path: /metrics
-      port: metrics
+  - honorLabels: true
+    interval: 10s
+    path: /metrics
+    port: metrics
+    {{- if .Values.operator.metricRelabelings }}
+    metricRelabelings:
+    {{- tpl (toYaml .Values.operator.metricRelabelings | nindent 4) . }}
+    {{- end }}
+    {{- if .Values.operator.relabelings }}
+    relabelings:
+    {{- tpl (toYaml .Values.operator.relabelings | nindent 4) . }}
+    {{- end }}
   namespaceSelector:
     matchNames:
       - kube-system
