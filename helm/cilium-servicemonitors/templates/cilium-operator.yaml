@@ -4,25 +4,20 @@ kind: ServiceMonitor
 metadata:
   labels:
     application.giantswarm.io/team: {{ .Values.team }}
-    {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
-  name: cilium-agent
+      {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
+  name: cilium-operator
   namespace: kube-system
 spec:
   endpoints:
-  - honorLabels: true
-    interval: 10s
-    path: /metrics
-    port: metrics
-    relabelings:
-    relabelings:
-      - sourceLabels:
-          - __meta_kubernetes_pod_node_name
-        targetLabel: node
-        replacement: ${1}
+    - honorLabels: true
+      interval: 10s
+      path: /metrics
+      port: metrics
   namespaceSelector:
     matchNames:
-    - kube-system
+      - kube-system
   selector:
     matchLabels:
-      k8s-app: cilium
+      io.cilium/app: operator
+      name: cilium-operator
 {{- end }}
