@@ -3,3 +3,7 @@ cluster:
     clusterDomain: cluster.local
 
 team: kaas
+
+# During initial tests of cilium in production, we are afraid we might have too many metrics scraped by prometheus.
+# In order to avoid having stability issues, we allow disabling scraping of cilium by setting the disabled flag to true.
+disabled: false

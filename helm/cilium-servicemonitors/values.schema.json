@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "cluster": {
+            "type": "object",
+            "properties": {
+                "kubernetes": {
+                    "type": "object",
+                    "properties": {
+                        "clusterDomain": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "disabled": {
+            "type": "boolean"
+        },
+        "team": {
+            "type": "string"
+        }
+    }
+}
