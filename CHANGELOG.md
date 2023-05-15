@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Allow disabling service monitors via helm value `disabled`.
+
 ## [0.0.2] - 2023-02-24
 
 ### Changed
