@@ -9,16 +9,18 @@ metadata:
   namespace: kube-system
 spec:
   endpoints:
-    - honorLabels: true
-      interval: 10s
-      path: /metrics
-      port: metrics
-      relabelings:
-      relabelings:
-        - sourceLabels:
-            - __meta_kubernetes_pod_node_name
-          targetLabel: node
-          replacement: ${1}
+  - honorLabels: true
+    interval: 10s
+    path: /metrics
+    port: metrics
+    {{- if .Values.agent.metricRelabelings }}
+    metricRelabelings:
+    {{- tpl (toYaml .Values.agent.metricRelabelings | nindent 4) . }}
+    {{- end }}
+    {{- if .Values.agent.relabelings }}
+    relabelings:
+    {{- tpl (toYaml .Values.agent.relabelings | nindent 4) . }}
+    {{- end }}
   namespaceSelector:
     matchNames:
       - kube-system

@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add overridability to the servicemonitors relabelings and metric_relabelings sections.
+
 ## [0.1.0] - 2023-05-15
 
 ### Added

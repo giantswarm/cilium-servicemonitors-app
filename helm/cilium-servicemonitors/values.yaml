@@ -7,3 +7,23 @@ team: kaas
 # During initial tests of cilium in production, we are afraid we might have too many metrics scraped by prometheus.
 # In order to avoid having stability issues, we allow disabling scraping of cilium by setting the disabled flag to true.
 disabled: false
+
+agent:
+  relabelings:
+  - sourceLabels:
+    - __meta_kubernetes_pod_node_name
+    targetLabel: node
+    replacement: ${1}
+  metricRelabelings: {}
+
+hubble:
+  relabelings:
+    - sourceLabels:
+      - __meta_kubernetes_pod_node_name
+      targetLabel: node
+      replacement: ${1}
+  metricRelabelings: {}
+
+operator:
+  relabelings: {}
+  metricRelabelings: {}
