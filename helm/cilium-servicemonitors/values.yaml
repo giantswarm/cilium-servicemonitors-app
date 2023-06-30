@@ -15,8 +15,11 @@ agent:
     - __meta_kubernetes_pod_node_name
     targetLabel: node
     replacement: ${1}
-  metricRelabelings: {}
-
+  metricRelabelings:
+  - sourceLabels:
+    - __name__
+    regex: 'cilium_node_connectivity_latency_seconds'
+    action: drop
 hubble:
   scrapeInterval: 60s
   relabelings:
