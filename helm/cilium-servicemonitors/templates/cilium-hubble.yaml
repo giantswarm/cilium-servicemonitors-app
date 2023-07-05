@@ -10,7 +10,7 @@ metadata:
 spec:
   endpoints:
   - honorLabels: true
-    interval: 10s
+    interval: {{ .Values.hubble.scrapeInterval }}
     path: /metrics
     port: metrics
     {{- if .Values.hubble.metricRelabelings }}
