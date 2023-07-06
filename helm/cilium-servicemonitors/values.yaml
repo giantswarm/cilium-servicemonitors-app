@@ -15,8 +15,17 @@ agent:
     - __meta_kubernetes_pod_node_name
     targetLabel: node
     replacement: ${1}
-  metricRelabelings: {}
-
+  metricRelabelings:
+  # 'cilium_node_connectivity_latency_seconds' and 'cilium_node_connectivity_status' have too high cardinality
+  # See note in doc: https://docs.cilium.io/en/stable/observability/metrics/#configuration
+  - sourceLabels:
+    - __name__
+    regex: 'cilium_node_connectivity_latency_seconds'
+    action: drop
+  - sourceLabels:
+    - __name__
+    regex: 'cilium_node_connectivity_status'
+    action: drop
 hubble:
   scrapeInterval: 60s
   relabelings:

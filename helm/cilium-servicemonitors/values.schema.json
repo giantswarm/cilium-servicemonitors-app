@@ -2,6 +2,54 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "agent": {
+            "type": "object",
+            "properties": {
+                "metricRelabelings": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "action": {
+                                "type": "string"
+                            },
+                            "regex": {
+                                "type": "string"
+                            },
+                            "sourceLabels": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "relabelings": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "replacement": {
+                                "type": "string"
+                            },
+                            "sourceLabels": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "targetLabel": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "scrapeInterval": {
+                    "type": "string"
+                }
+            }
+        },
         "cluster": {
             "type": "object",
             "properties": {
@@ -17,6 +65,51 @@
         },
         "disabled": {
             "type": "boolean"
+        },
+        "hubble": {
+            "type": "object",
+            "properties": {
+                "metricRelabelings": {
+                    "type": "object"
+                },
+                "relabelings": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "replacement": {
+                                "type": "string"
+                            },
+                            "sourceLabels": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "targetLabel": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "scrapeInterval": {
+                    "type": "string"
+                }
+            }
+        },
+        "operator": {
+            "type": "object",
+            "properties": {
+                "metricRelabelings": {
+                    "type": "object"
+                },
+                "relabelings": {
+                    "type": "object"
+                },
+                "scrapeInterval": {
+                    "type": "string"
+                }
+            }
         },
         "team": {
             "type": "string"
