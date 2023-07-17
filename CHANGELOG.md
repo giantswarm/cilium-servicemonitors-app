@@ -7,9 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
-### Fixed
+### Changed
 
-- Drop greedy metrics and increase scrape interval to 60s.
+- Drop greedy metrics `cilium_node_connectivity_latency_seconds` and `cilium_node_connectivity_status`.
+- Increase scrape interval to 60s.
 
 ## [0.1.1] - 2023-05-16
 
