@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Change ownership from `phoenix` to `cabbage`.
+
 ## [0.1.2] - 2023-07-26
 
 ### Changed
