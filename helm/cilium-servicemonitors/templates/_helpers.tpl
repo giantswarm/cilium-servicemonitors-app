@@ -35,6 +35,7 @@ Common labels
 */}}
 {{- define "cilium-servicemonitors.labels" -}}
 helm.sh/chart: {{ include "cilium-servicemonitors.chart" . }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
