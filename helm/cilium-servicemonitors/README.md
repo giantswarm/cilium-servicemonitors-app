@@ -29,4 +29,3 @@ Cilium ServiceMonitors
 | operator.metricRelabelings | object | `{}` |  |
 | operator.relabelings | object | `{}` |  |
 | operator.scrapeInterval | string | `"60s"` |  |
-| team | string | `"kaas"` |  |
