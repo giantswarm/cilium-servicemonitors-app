@@ -1,7 +1,7 @@
 apiVersion: v2
 description: Cilium ServiceMonitors
 name: cilium-servicemonitors
-version: [[ .Version ]]
+version: 0.1.2
 appVersion: 1.0.0
 annotations:
   application.giantswarm.io/team: "cabbage"
