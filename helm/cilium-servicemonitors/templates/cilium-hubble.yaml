@@ -3,7 +3,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-    application.giantswarm.io/team: {{ .Values.team }}
+    application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
     {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
   name: hubble-relay
   namespace: kube-system

@@ -4,7 +4,7 @@ name: cilium-servicemonitors
 version: [[ .Version ]]
 appVersion: 1.0.0
 annotations:
-  application.giantswarm.io/team: "phoenix"
+  application.giantswarm.io/team: "cabbage"
 home: https://github.com/giantswarm/cilium_servicemonitors_app
 keywords:
   - monitoring
