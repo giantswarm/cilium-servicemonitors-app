@@ -6,14 +6,18 @@ workflows:
   version: 2
   build:
     jobs:
-      - architect/push-to-app-catalog:
-          context: architect
-          executor: "app-build-suite"
-          name: "package and push to default catalog"
-          app_catalog: "default-catalog"
-          app_catalog_test: "default-test-catalog"
-          chart: "cilium-servicemonitors"
-          filters:
+    - architect/push-to-app-catalog:
+        context: architect
+        executor: app-build-suite
+        name: package and push to default catalog
+        app_catalog: default-catalog
+        app_catalog_test: default-test-catalog
+        chart: cilium-servicemonitors
+        filters:
             # Trigger the job also on git tag.
-            tags:
-              only: /^v.*/
+          tags:
+            only: /^v.*/
+          branches:
+            ignore:
+            - main
+            - master
