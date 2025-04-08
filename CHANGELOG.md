@@ -7,8 +7,13 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add ServiceMonitor for hubble. It is disabled by default and can be enabled through setting `.Values.hubble.enabled` to `true`.
+
 ### Changed
 
+- **Breaking** rename hubble-relay ServiceMonitor values to `.Values.hubbleRelay`
 - Change ownership from `phoenix` to `cabbage`.
 - Use the app-build-suite.
 

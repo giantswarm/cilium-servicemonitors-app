@@ -9,16 +9,16 @@ metadata:
 spec:
   endpoints:
   - honorLabels: true
-    interval: {{ .Values.hubble.scrapeInterval }}
+    interval: {{ .Values.hubbleRelay.scrapeInterval }}
     path: /metrics
     port: metrics
-    {{- if .Values.hubble.metricRelabelings }}
+    {{- if .Values.hubbleRelay.metricRelabelings }}
     metricRelabelings:
-    {{- tpl (toYaml .Values.hubble.metricRelabelings | nindent 4) . }}
+    {{- tpl (toYaml .Values.hubbleRelay.metricRelabelings | nindent 4) . }}
     {{- end }}
-    {{- if .Values.hubble.relabelings }}
+    {{- if .Values.hubbleRelay.relabelings }}
     relabelings:
-    {{- tpl (toYaml .Values.hubble.relabelings | nindent 4) . }}
+    {{- tpl (toYaml .Values.hubbleRelay.relabelings | nindent 4) . }}
     {{- end }}
   namespaceSelector:
     matchNames:
@@ -26,6 +26,7 @@ spec:
   selector:
     matchLabels:
       k8s-app: hubble-relay
+{{- if .Values.hubble.enabled }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
@@ -54,4 +55,5 @@ spec:
   selector:
     matchLabels:
       k8s-app: hubble
+{{- end }}
 {{- end }}
