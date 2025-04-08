@@ -20,7 +20,16 @@ agent:
     - __name__
     regex: cilium_(node_connectivity_latency_seconds|node_connectivity_status|k8s_client_api_latency_time_seconds_bucket|agent_api_process_time_seconds_bucket|policy_regeneration_time_stats_seconds_bucket)
     action: drop
+hubbleRelay:
+  scrapeInterval: 60s
+  relabelings:
+    - sourceLabels:
+      - __meta_kubernetes_pod_node_name
+      targetLabel: node
+      replacement: ${1}
+  metricRelabelings: {}
 hubble:
+  enabled: false
   scrapeInterval: 60s
   relabelings:
     - sourceLabels:

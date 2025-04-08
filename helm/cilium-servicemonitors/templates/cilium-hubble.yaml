@@ -9,9 +9,38 @@ metadata:
 spec:
   endpoints:
   - honorLabels: true
-    interval: {{ .Values.hubble.scrapeInterval }}
+    interval: {{ .Values.hubbleRelay.scrapeInterval }}
     path: /metrics
     port: metrics
+    {{- if .Values.hubbleRelay.metricRelabelings }}
+    metricRelabelings:
+    {{- tpl (toYaml .Values.hubbleRelay.metricRelabelings | nindent 4) . }}
+    {{- end }}
+    {{- if .Values.hubbleRelay.relabelings }}
+    relabelings:
+    {{- tpl (toYaml .Values.hubbleRelay.relabelings | nindent 4) . }}
+    {{- end }}
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  selector:
+    matchLabels:
+      k8s-app: hubble-relay
+{{- if .Values.hubble.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
+  name: hubble
+  namespace: kube-system
+spec:
+  endpoints:
+  - honorLabels: true
+    interval: {{ .Values.hubble.scrapeInterval }}
+    path: /metrics
+    port: hubble-metrics
     {{- if .Values.hubble.metricRelabelings }}
     metricRelabelings:
     {{- tpl (toYaml .Values.hubble.metricRelabelings | nindent 4) . }}
@@ -22,8 +51,9 @@ spec:
     {{- end }}
   namespaceSelector:
     matchNames:
-      - kube-system
+    - kube-system
   selector:
     matchLabels:
-      k8s-app: hubble-relay
+      k8s-app: hubble
+{{- end }}
 {{- end }}

@@ -69,6 +69,40 @@
         "hubble": {
             "type": "object",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "metricRelabelings": {
+                    "type": "object"
+                },
+                "relabelings": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "replacement": {
+                                "type": "string"
+                            },
+                            "sourceLabels": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "targetLabel": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "scrapeInterval": {
+                    "type": "string"
+                }
+            }
+        },
+        "hubbleRelay": {
+            "type": "object",
+            "properties": {
                 "metricRelabelings": {
                     "type": "object"
                 },
