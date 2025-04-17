@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.1.3] - 2025-04-17
+
 ### Changed
 
 - Change ownership from `phoenix` to `cabbage`.
@@ -48,7 +50,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Create ServiceMonitors to scrape Cilium
 
 
-[Unreleased]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.0.2...v0.1.0
