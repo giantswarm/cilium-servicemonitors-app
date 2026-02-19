@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Migrate chart metadata annotations
+
 ## [0.1.3] - 2025-04-17
 
 - Fix home URL in chart metadata
