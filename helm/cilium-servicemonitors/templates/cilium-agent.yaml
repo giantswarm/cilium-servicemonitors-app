@@ -1,4 +1,4 @@
-{{- if not .Values.disabled }}
+{{- if and (not .Values.disabled) .Values.agent.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:

@@ -5,6 +5,9 @@
         "agent": {
             "type": "object",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "metricRelabelings": {
                     "type": "array",
                     "items": {
@@ -69,6 +72,9 @@
         "hubble": {
             "type": "object",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "metricRelabelings": {
                     "type": "object"
                 },
@@ -100,6 +106,9 @@
         "operator": {
             "type": "object",
             "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
                 "metricRelabelings": {
                     "type": "object"
                 },

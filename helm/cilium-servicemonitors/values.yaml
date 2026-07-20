@@ -7,6 +7,7 @@ cluster:
 disabled: false
 
 agent:
+  enabled: true
   scrapeInterval: 60s
   relabelings:
   - sourceLabels:
@@ -21,6 +22,7 @@ agent:
     regex: cilium_(node_connectivity_latency_seconds|node_connectivity_status|k8s_client_api_latency_time_seconds_bucket|agent_api_process_time_seconds_bucket|policy_regeneration_time_stats_seconds_bucket)
     action: drop
 hubble:
+  enabled: true
   scrapeInterval: 60s
   relabelings:
     - sourceLabels:
@@ -30,6 +32,7 @@ hubble:
   metricRelabelings: {}
 
 operator:
+  enabled: true
   scrapeInterval: 60s
   relabelings: {}
   metricRelabelings: {}
