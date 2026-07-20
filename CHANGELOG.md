@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-20
+
 ### Added
 
 - Add per-monitor `enabled` flag for the agent, hubble and operator.
@@ -66,7 +68,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Create ServiceMonitors to scrape Cilium
 
 
-[Unreleased]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.4...HEAD
+[Unreleased]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.4...v0.2.0
 [0.1.4]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/giantswarm/cilium-servicemonitors-app/compare/v0.1.1...v0.1.2
