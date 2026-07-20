@@ -1,17 +1,17 @@
 {{- if not .Values.disabled }}
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   labels:
     {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
   name: hubble-relay
   namespace: kube-system
 spec:
-  endpoints:
+  podMetricsEndpoints:
   - honorLabels: true
     interval: {{ .Values.hubble.scrapeInterval }}
     path: /metrics
-    port: metrics
+    port: prometheus
     {{- if .Values.hubble.metricRelabelings }}
     metricRelabelings:
     {{- tpl (toYaml .Values.hubble.metricRelabelings | nindent 4) . }}

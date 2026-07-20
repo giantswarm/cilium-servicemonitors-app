@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Switch all monitors from ServiceMonitor to PodMonitor.
+
 ## [0.1.4] - 2026-02-19
 
 ### Changed

@@ -1,17 +1,17 @@
 {{- if not .Values.disabled }}
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   labels:
     {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
   name: cilium-operator
   namespace: kube-system
 spec:
-  endpoints:
+  podMetricsEndpoints:
   - honorLabels: true
     interval: {{ .Values.operator.scrapeInterval }}
     path: /metrics
-    port: metrics
+    port: prometheus
     {{- if .Values.operator.metricRelabelings }}
     metricRelabelings:
     {{- tpl (toYaml .Values.operator.metricRelabelings | nindent 4) . }}
