@@ -1,17 +1,17 @@
-{{- if not .Values.disabled }}
+{{- if and (not .Values.disabled) .Values.agent.enabled }}
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   labels:
     {{- include "cilium-servicemonitors.labels" . | nindent 4 }}
   name: cilium-agent
   namespace: kube-system
 spec:
-  endpoints:
+  podMetricsEndpoints:
   - honorLabels: true
     interval: {{ .Values.agent.scrapeInterval }}
     path: /metrics
-    port: metrics
+    port: prometheus
     {{- if .Values.agent.metricRelabelings }}
     metricRelabelings:
     {{- tpl (toYaml .Values.agent.metricRelabelings | nindent 4) . }}

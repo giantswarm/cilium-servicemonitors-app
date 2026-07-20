@@ -7,6 +7,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add per-monitor `enabled` flag for the agent, hubble and operator.
+
+### Changed
+
+- Switch all monitors from ServiceMonitor to PodMonitor.
+
 ## [0.1.4] - 2026-02-19
 
 ### Changed
