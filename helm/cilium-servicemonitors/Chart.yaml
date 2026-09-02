@@ -7,6 +7,7 @@ icon: https://s.giantswarm.io/app-icons/cilium/1/dark.svg
 annotations:
   io.giantswarm.application.team: cabbage
   io.giantswarm.application.audience: "all"
+  io.giantswarm.application.managed: "true"
   io.giantswarm.application.restrictions.cluster-singleton: "true"
   io.giantswarm.application.restrictions.fixed-namespace: kube-system
 home: https://github.com/giantswarm/cilium-servicemonitors-app
