@@ -1,0 +1,44 @@
+# DO NOT EDIT. Generated with:
+#
+#    devctl
+#
+#    https://github.com/giantswarm/devctl/blob/4f13495dbc91dbcfb36451fc1456c4ec1dca9342/pkg/gen/input/precommit/internal/file/pre-commit-action.yaml.template
+#
+name: pre-commit
+
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches:
+      - main
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  HELM_DOCS_VERSION: "1.14.2"
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python environment
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+      - name: Install helm-docs
+        uses: giantswarm/install-binary-action@5bef88f65012037dd836117c8d344b21bb559854 # v4.1.0
+        with:
+          binary: helm-docs
+          version: "${{ env.HELM_DOCS_VERSION }}"
+          download_url: "https://github.com/norwoodj/helm-docs/releases/download/v${version}/helm-docs_${version}_Linux_x86_64.tar.gz"
+          tarball_binary_path: "helm-docs"
+          smoke_test: "${binary} --version"
+      - name: Execute pre-commit hooks
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+        env:
+          GOGC: "20"

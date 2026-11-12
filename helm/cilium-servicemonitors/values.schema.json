@@ -1,9 +1,78 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "relabel-config.json": {
+            "type": "object",
+            "description": "RelabelConfig allows dynamic rewriting of the label set for targets, alerts,\nscraped samples and remote write samples.\n\nMore info: https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config",
+            "additionalProperties": false,
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "action to perform based on the regex matching.\n\n`Uppercase` and `Lowercase` actions require Prometheus >= v2.36.0.\n`DropEqual` and `KeepEqual` actions require Prometheus >= v2.41.0.\n\nDefault: \"Replace\"",
+                    "enum": [
+                        "replace",
+                        "Replace",
+                        "keep",
+                        "Keep",
+                        "drop",
+                        "Drop",
+                        "hashmod",
+                        "HashMod",
+                        "labelmap",
+                        "LabelMap",
+                        "labeldrop",
+                        "LabelDrop",
+                        "labelkeep",
+                        "LabelKeep",
+                        "lowercase",
+                        "Lowercase",
+                        "uppercase",
+                        "Uppercase",
+                        "keepequal",
+                        "KeepEqual",
+                        "dropequal",
+                        "DropEqual"
+                    ],
+                    "default": "replace"
+                },
+                "modulus": {
+                    "type": "integer",
+                    "description": "modulus to take of the hash of the source label values.\n\nOnly applicable when the action is `HashMod`.",
+                    "format": "int64"
+                },
+                "regex": {
+                    "type": "string",
+                    "description": "regex defines the regular expression against which the extracted value is matched."
+                },
+                "replacement": {
+                    "type": "string",
+                    "description": "replacement value against which a Replace action is performed if the\nregular expression matches.\n\nRegex capture groups are available."
+                },
+                "separator": {
+                    "type": "string",
+                    "description": "separator defines the string between concatenated SourceLabels."
+                },
+                "sourceLabels": {
+                    "type": "array",
+                    "description": "sourceLabels defines the source labels select values from existing labels. Their content is\nconcatenated using the configured Separator and matched against the\nconfigured regular expression.",
+                    "items": {
+                        "type": "string",
+                        "description": "LabelName is a valid Prometheus label name.\nFor Prometheus 3.x, a label name is valid if it contains UTF-8 characters.\nFor Prometheus 2.x, a label name is only valid if it contains ASCII characters, letters, numbers, as well as underscores."
+                    }
+                },
+                "targetLabel": {
+                    "type": "string",
+                    "description": "targetLabel defines the label to which the resulting string is written in a replacement.\n\nIt is mandatory for `Replace`, `HashMod`, `Lowercase`, `Uppercase`,\n`KeepEqual` and `DropEqual` actions.\n\nRegex capture groups are available."
+                }
+            }
+        }
+    },
     "type": "object",
+    "additionalProperties": false,
     "properties": {
         "agent": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean"
@@ -11,13 +80,17 @@
                 "metricRelabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/$defs/relabel-config.json",
+                        "type": "object",
+                        "unevaluatedProperties": false
                     }
                 },
                 "relabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/$defs/relabel-config.json",
+                        "type": "object",
+                        "unevaluatedProperties": false
                     }
                 },
                 "scrapeInterval": {
@@ -25,11 +98,28 @@
                 }
             }
         },
+        "baseDomain": {
+            "type": "string"
+        },
+        "bootstrapMode": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "chartOperator": {
+            "type": "object",
+            "additionalProperties": true
+        },
+        "ciliumNetworkPolicy": {
+            "type": "object",
+            "additionalProperties": true
+        },
         "cluster": {
             "type": "object",
+            "additionalProperties": true,
             "properties": {
                 "kubernetes": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "clusterDomain": {
                             "type": "string"
@@ -38,11 +128,48 @@
                 }
             }
         },
+        "clusterCA": {
+            "type": "string"
+        },
+        "clusterCIDR": {
+            "type": "string"
+        },
+        "clusterDNSIP": {
+            "type": "string"
+        },
+        "clusterID": {
+            "type": "string"
+        },
         "disabled": {
             "type": "boolean"
         },
+        "externalDNSIP": {
+            "type": "string"
+        },
+        "gcpProject": {
+            "type": "string"
+        },
+        "global": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Global values shared between all subcharts and the platform.",
+            "additionalProperties": true,
+            "properties": {
+                "podSecurityStandards": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "helm": {
+            "type": "object",
+            "additionalProperties": true
+        },
         "hubble": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean"
@@ -50,22 +177,28 @@
                 "metricRelabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/$defs/relabel-config.json"
                     }
                 },
                 "relabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/$defs/relabel-config.json",
+                        "type": "object",
+                        "unevaluatedProperties": false
                     }
                 },
                 "scrapeInterval": {
                     "type": "string"
                 }
             }
+        },
+        "managementCluster": {
+            "type": "string"
         },
         "operator": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "type": "boolean"
@@ -73,13 +206,13 @@
                 "metricRelabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/$defs/relabel-config.json"
                     }
                 },
                 "relabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/$defs/relabel-config.json"
                     }
                 },
                 "scrapeInterval": {
@@ -87,8 +220,14 @@
                 }
             }
         },
+        "provider": {
+            "type": "string"
+        },
         "releaseLabel": {
             "type": "boolean"
+        },
+        "subscriptionID": {
+            "type": "string"
         }
     }
 }
