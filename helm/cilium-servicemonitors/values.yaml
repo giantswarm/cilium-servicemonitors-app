@@ -11,12 +11,12 @@ releaseLabel: false
 agent:
   enabled: true
   scrapeInterval: 60s
-  relabelings:  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/relabelings/items
+  relabelings:  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
   - sourceLabels:
     - __meta_kubernetes_pod_node_name
     targetLabel: node
     replacement: ${1}
-  metricRelabelings:  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/metricRelabelings/items
+  metricRelabelings:  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
   # 'cilium_node_connectivity_latency_seconds' and 'cilium_node_connectivity_status' have too high cardinality
   # See note in doc: https://docs.cilium.io/en/stable/observability/metrics/#configuration
   - sourceLabels:
@@ -26,15 +26,15 @@ agent:
 hubble:
   enabled: true
   scrapeInterval: 60s
-  relabelings:  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/relabelings/items
+  relabelings:  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
     - sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: node
       replacement: ${1}
-  metricRelabelings: []  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/metricRelabelings/items
+  metricRelabelings: []  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
 
 operator:
   enabled: true
   scrapeInterval: 60s
-  relabelings: []  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/relabelings/items
-  metricRelabelings: []  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/metricRelabelings/items
+  relabelings: []  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
+  metricRelabelings: []  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
