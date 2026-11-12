@@ -6,15 +6,17 @@ cluster:
 # In order to avoid having stability issues, we allow disabling scraping of cilium by setting the disabled flag to true.
 disabled: false
 
+releaseLabel: false
+
 agent:
   enabled: true
   scrapeInterval: 60s
-  relabelings:
+  relabelings:  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/relabelings/items
   - sourceLabels:
     - __meta_kubernetes_pod_node_name
     targetLabel: node
     replacement: ${1}
-  metricRelabelings:
+  metricRelabelings:  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/metricRelabelings/items
   # 'cilium_node_connectivity_latency_seconds' and 'cilium_node_connectivity_status' have too high cardinality
   # See note in doc: https://docs.cilium.io/en/stable/observability/metrics/#configuration
   - sourceLabels:
@@ -24,15 +26,15 @@ agent:
 hubble:
   enabled: true
   scrapeInterval: 60s
-  relabelings:
+  relabelings:  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/relabelings/items
     - sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: node
       replacement: ${1}
-  metricRelabelings: {}
+  metricRelabelings: []  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/metricRelabelings/items
 
 operator:
   enabled: true
   scrapeInterval: 60s
-  relabelings: {}
-  metricRelabelings: {}
+  relabelings: []  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/relabelings/items
+  metricRelabelings: []  # @schema itemProperties: {}; itemRef: https://raw.githubusercontent.com/datreeio/CRDs-catalog/63669a570e231d4f1f8396d229a1de512bcf0a34/monitoring.coreos.com/podmonitor_v1.json#/properties/spec/properties/podMetricsEndpoints/items/properties/metricRelabelings/items
