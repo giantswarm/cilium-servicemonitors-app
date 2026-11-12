@@ -6,15 +6,17 @@ cluster:
 # In order to avoid having stability issues, we allow disabling scraping of cilium by setting the disabled flag to true.
 disabled: false
 
+releaseLabel: false
+
 agent:
   enabled: true
   scrapeInterval: 60s
-  relabelings:
+  relabelings:  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
   - sourceLabels:
     - __meta_kubernetes_pod_node_name
     targetLabel: node
     replacement: ${1}
-  metricRelabelings:
+  metricRelabelings:  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
   # 'cilium_node_connectivity_latency_seconds' and 'cilium_node_connectivity_status' have too high cardinality
   # See note in doc: https://docs.cilium.io/en/stable/observability/metrics/#configuration
   - sourceLabels:
@@ -24,15 +26,15 @@ agent:
 hubble:
   enabled: true
   scrapeInterval: 60s
-  relabelings:
+  relabelings:  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
     - sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: node
       replacement: ${1}
-  metricRelabelings: {}
+  metricRelabelings: []  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
 
 operator:
   enabled: true
   scrapeInterval: 60s
-  relabelings: {}
-  metricRelabelings: {}
+  relabelings: []  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json
+  metricRelabelings: []  # @schema itemProperties: {}; itemRef: schemas/relabel-config.json

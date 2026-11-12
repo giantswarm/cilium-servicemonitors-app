@@ -9,6 +9,9 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Fixed
 
+- Relabeling settings are lists validated against the relabel config, and `releaseLabel` is declared.
+- Set the team label from the chart annotation.
+- Align the chart `appVersion` with the chart version.
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
 
 ### Added

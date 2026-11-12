@@ -2,7 +2,7 @@
 
 Cilium ServiceMonitors
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square)
 ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
@@ -12,6 +12,7 @@ Cilium ServiceMonitors
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| agent.enabled | bool | `true` |  |
 | agent.metricRelabelings[0].action | string | `"drop"` |  |
 | agent.metricRelabelings[0].regex | string | `"cilium_(node_connectivity_latency_seconds|node_connectivity_status|k8s_client_api_latency_time_seconds_bucket|agent_api_process_time_seconds_bucket|policy_regeneration_time_stats_seconds_bucket)"` |  |
 | agent.metricRelabelings[0].sourceLabels[0] | string | `"__name__"` |  |
@@ -21,11 +22,14 @@ Cilium ServiceMonitors
 | agent.scrapeInterval | string | `"60s"` |  |
 | cluster.kubernetes.clusterDomain | string | `"cluster.local"` |  |
 | disabled | bool | `false` |  |
-| hubble.metricRelabelings | object | `{}` |  |
+| hubble.enabled | bool | `true` |  |
+| hubble.metricRelabelings | list | `[]` |  |
 | hubble.relabelings[0].replacement | string | `"${1}"` |  |
 | hubble.relabelings[0].sourceLabels[0] | string | `"__meta_kubernetes_pod_node_name"` |  |
 | hubble.relabelings[0].targetLabel | string | `"node"` |  |
 | hubble.scrapeInterval | string | `"60s"` |  |
-| operator.metricRelabelings | object | `{}` |  |
-| operator.relabelings | object | `{}` |  |
+| operator.enabled | bool | `true` |  |
+| operator.metricRelabelings | list | `[]` |  |
+| operator.relabelings | list | `[]` |  |
 | operator.scrapeInterval | string | `"60s"` |  |
+| releaseLabel | bool | `false` |  |

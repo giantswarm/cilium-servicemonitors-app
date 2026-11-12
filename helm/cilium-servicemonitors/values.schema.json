@@ -11,41 +11,13 @@
                 "metricRelabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "action": {
-                                "type": "string"
-                            },
-                            "regex": {
-                                "type": "string"
-                            },
-                            "sourceLabels": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            }
-                        }
+                        "type": "object"
                     }
                 },
                 "relabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "replacement": {
-                                "type": "string"
-                            },
-                            "sourceLabels": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "targetLabel": {
-                                "type": "string"
-                            }
-                        }
+                        "type": "object"
                     }
                 },
                 "scrapeInterval": {
@@ -76,26 +48,15 @@
                     "type": "boolean"
                 },
                 "metricRelabelings": {
-                    "type": "object"
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
                 },
                 "relabelings": {
                     "type": "array",
                     "items": {
-                        "type": "object",
-                        "properties": {
-                            "replacement": {
-                                "type": "string"
-                            },
-                            "sourceLabels": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "targetLabel": {
-                                "type": "string"
-                            }
-                        }
+                        "type": "object"
                     }
                 },
                 "scrapeInterval": {
@@ -110,15 +71,24 @@
                     "type": "boolean"
                 },
                 "metricRelabelings": {
-                    "type": "object"
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
                 },
                 "relabelings": {
-                    "type": "object"
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
                 },
                 "scrapeInterval": {
                     "type": "string"
                 }
             }
+        },
+        "releaseLabel": {
+            "type": "boolean"
         }
     }
 }
